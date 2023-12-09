@@ -109,17 +109,17 @@ export interface UserPhoto {
   webviewPath?: string;
 }
 
-export async function base64FromPath(path: string): Promise<string> {
+export async function base64FromPath(path: string): Promise<string | Blob> {
   const response = await fetch(path);
   const blob = await response.blob();
-  return new Promise((resolve, reject) => {
+  return new Promise<string | Blob>((resolve, reject) => {
     const reader = new FileReader();
     reader.onerror = reject;
     reader.onload = () => {
-      if (typeof reader.result === 'string') {
+      if (typeof reader.result === 'string' || reader.result instanceof ArrayBuffer) {
         resolve(reader.result);
       } else {
-        reject('method did not return a string')
+        reject('Method did not return a string');
       }
     };
     reader.readAsDataURL(blob);
