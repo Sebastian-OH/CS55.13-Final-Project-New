@@ -4,7 +4,7 @@ import './Tab3.css';
 
 const Tab3: React.FC = () => {
   // dataset state variable to hold JSON data from WP
-  const [dataset, setDataset] = useState([]);
+  const [dataset, setDataset] = useState<any[]>([]);
   // URL for WP JSON REST endpoint
   const dataURL = "https://dev-cs-55-13-site.pantheonsite.io/wp-json/twentytwentyone-child/v1/newContact";
   // useEffect() to get JSON data and populate dataset state variable
