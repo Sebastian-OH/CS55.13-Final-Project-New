@@ -85,7 +85,7 @@ export function usePhotoGallery() {
     };
     }
     
-    export async function base64FromPath(path: string): Promise<string> {
+    export async function base64FromPath(path: string): Promise<string | Blob> {
       const response = await fetch(path);
       const blob = await response.blob();
       return new Promise((resolve, reject) => {
